@@ -2,11 +2,11 @@ const todoInput = document.getElementById("todo-input")
 const addTaskBtn = document.getElementById("add-task-btn")
 const todoList = document.getElementById("todo-list")
 
-const task = []
+let task = []
 
-addTaskBtn.addEventListener('click', () => {
+addTaskBtn.addEventListener("click", () => {
 
-    const taskText = todoInput.Value.trim()
+    const taskText = todoInput.value.trim()
     if (taskText === "") return;
     
     const newTask ={
@@ -14,4 +14,15 @@ addTaskBtn.addEventListener('click', () => {
         text: taskText,
         completed : false 
     }
-})
+    task.push(newTask);
+    storingData();
+    todoInput.value= "";
+    console.log(task)
+
+});
+
+
+
+function storingData(){
+    localStorage.setItem("task", JSON.stringify(task));
+}
