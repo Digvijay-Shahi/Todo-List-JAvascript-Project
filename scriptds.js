@@ -1,8 +1,11 @@
-const todoInput = document.getElementById("todo-input")
+document.addEventListener('DOMContentLoaded' , () => {
+    const todoInput = document.getElementById("todo-input")
 const addTaskBtn = document.getElementById("add-task-btn")
 const todoList = document.getElementById("todo-list")
 
-let task = []
+let tasks = JSON.parse(localStorage.getItem(tasks))  || [];
+
+  tasks.forEach((task) => renderTask(task));
 
 addTaskBtn.addEventListener("click", () => {
 
@@ -17,12 +20,16 @@ addTaskBtn.addEventListener("click", () => {
     task.push(newTask);
     storingData();
     todoInput.value= "";
-    console.log(task)
+    console.log(tasks)
 
 });
 
+function renderTask(task){
+    console.log(task)
+}
 
 
 function storingData(){
-    localStorage.setItem("task", JSON.stringify(task));
+    localStorage.setItem("task", JSON.stringify(tasks));
 }
+})
